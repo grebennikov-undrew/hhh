@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/custom-attributes")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CustomAttributeController {
 
     private final CustomAttributeService customAttributeService;

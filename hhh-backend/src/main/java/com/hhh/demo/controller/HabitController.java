@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/habit")
+@CrossOrigin(origins = "http://localhost:3000")
 public class HabitController {
 
     @Autowired
