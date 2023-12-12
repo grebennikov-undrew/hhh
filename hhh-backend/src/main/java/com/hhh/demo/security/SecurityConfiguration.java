@@ -39,7 +39,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
         corsConfiguration.addAllowedOriginPattern("**");
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "DELETE","OPTIONS"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE","OPTIONS"));
         corsConfiguration.setAllowCredentials(true);
 
         http
