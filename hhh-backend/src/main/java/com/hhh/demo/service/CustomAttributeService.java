@@ -4,6 +4,8 @@ import com.hhh.demo.entity.CustomAttribute;
 import com.hhh.demo.repository.CustomAttributeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +27,7 @@ public class CustomAttributeService {
         return customAttributeRepository.findById(id);
     }
 
+    @Transactional
     public CustomAttribute createCustomAttribute(CustomAttribute customAttribute) {
         return customAttributeRepository.save(customAttribute);
     }

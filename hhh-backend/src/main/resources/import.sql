@@ -5,9 +5,9 @@ INSERT INTO users   (username, email, password) VALUES ('user3', 'user3@example.
 
 -- Справочник привычек
 
-INSERT INTO habit_catalog (habit_name, description) VALUES ('Exercise', 'Regular physical exercise');
-INSERT INTO habit_catalog (habit_name, description) VALUES  ('Reading', 'Daily reading habit');
-INSERT INTO habit_catalog (habit_name, description) VALUES  ('Meditation', 'Mindfulness meditation');
+INSERT INTO habit_catalog (habit_name, description) VALUES ('Спорт', 'Regular physical exercise');
+INSERT INTO habit_catalog (habit_name, description) VALUES  ('Чтение', 'Daily reading habit');
+INSERT INTO habit_catalog (habit_name, description) VALUES  ('Медитация', 'Mindfulness meditation');
 
 -- Привычки пользователя
 INSERT INTO user_habits (user_id, habit_id, start_date) VALUES  (1, 1, '2023-01-01');
@@ -21,15 +21,17 @@ INSERT INTO tracking (user_habit_id, date, status) VALUES  (2, '2023-02-01', 'co
 INSERT INTO tracking (user_habit_id, date, status) VALUES (3, '2023-01-15', 'in_progress');
 
 -- Таблица Кастомных Атрибутов
-INSERT INTO custom_attributes (attribute_name) VALUES  ('Duration');
-INSERT INTO custom_attributes (attribute_name) VALUES  ('Pages Read');
-INSERT INTO custom_attributes (attribute_name) VALUES  ('Minutes Meditated');
-INSERT INTO custom_attributes (attribute_name) VALUES  ('Start date');
+INSERT INTO custom_attributes (attribute_name, habit_id, type) VALUES  ('Разминка',1,'CHECKBOX');
+INSERT INTO custom_attributes (attribute_name, habit_id, type) VALUES  ('Подтягиваний',1,'NUMBER');
+INSERT INTO custom_attributes (attribute_name, habit_id, type) VALUES  ('Отжиманий',1,'NUMBER');
+INSERT INTO custom_attributes (attribute_name, habit_id, type) VALUES  ('Страниц прочитано',2,'NUMBER');
+INSERT INTO custom_attributes (attribute_name, habit_id, type) VALUES  ('Минут медитации',3,'NUMBER');
+INSERT INTO custom_attributes (attribute_name, habit_id, type) VALUES  ('Описание',3,'TEXT');
 
 -- Таблица Деталей Отслеживания
-INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (1, 1, '30');
+INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (1, 1, 'true');
 INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (2, 1, '45');
 INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (2, 2, '20');
-INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (3, 3, '10');
-INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (4, 1, '15');
-INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (4, 2, '5');
+INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (3, 4, '10');
+INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (4, 5, '15');
+INSERT INTO tracking_details (tracking_id, attribute_id, attribute_value) VALUES  (4, 6, 'Думал о котах...');

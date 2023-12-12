@@ -1,15 +1,27 @@
-import React, {useContext, useState} from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, Redirect } from 'react-router-dom';
 import HomePage from './routes/HomePage';
+import NavBar from './components/NavBar';
+import Login from './layouts/login';
+import UserPage from './layouts/habits';
+import Main from './layouts/main';
+import UserProfile from './layouts/UserProfile';
+import AddHabit from './layouts/AddHabit';
+
 import './App.css';
 
 function App() {
     return (
-      <Router>
+      <div>
+        <NavBar></NavBar>
           <Routes>
-              <Route exact path='/' element={<HomePage/>}/>
+            <Route path="/about" element={<UserPage/>} />
+            <Route path="/profile/:id" element={<UserProfile/>} />
+            <Route path="/profile/:id/add" element={<AddHabit/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route exact path='/' element={<Main/>}/>
           </Routes>
-      </Router>
+      </div>
     );
 }
 

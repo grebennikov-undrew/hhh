@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/habit")
+@CrossOrigin(origins = "http://localhost:3000")
 public class HabitController {
 
     @Autowired
@@ -26,6 +27,13 @@ public class HabitController {
     public ResponseEntity<List<HabitCatalog>> getAllHabits() {
         List<HabitCatalog> habits = habitCatalogService.findAll();
         return ResponseEntity.ok(habits);
+    }
+
+    @Operation(summary = "Сохранить/изменить привычку")
+    @PostMapping
+    public ResponseEntity<HabitCatalog> saveHabit(@RequestBody HabitCatalog habitCatalog) {
+        HabitCatalog habit = habitCatalogService.saveAndAdd(habitCatalog);
+        return ResponseEntity.ok(habit);
     }
 
     @Operation(summary = "Загрузить все привычки как csv")
