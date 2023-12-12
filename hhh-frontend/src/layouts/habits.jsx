@@ -107,25 +107,31 @@ const UserPage = () => {
     const fetchData = async () => {
       const response = await getData();
       setData(response);
-      console.log(response)
+      // console.log(response)
+      response.map((item) => {
+        item.userHabits.map((habit) => (
+          console.log(habit.description)
+        ))
+      })
     };
     fetchData();
-    
+
   }, []);
   return (
     <Table striped bordered hover>
       <thead>
         <tr>
           <th>Имя</th>
-          <th>Возраст</th>
-          {/* Добавьте другие необходимые заголовки столбцов */}
+          <th>email</th>
+          <th>Привычки</th>
         </tr>
       </thead>
       <tbody>
         {data.map((item) => (
-          <tr key={item.id}>
-            <td>{item.name}</td>
-            <td>{item.age}</td>
+          <tr key={item.user_id}>
+            <td>{item.username}</td>
+            <td>{item.email}</td>
+            {/* <td>{item.}</td> */}
             {/* Добавьте другие необходимые ячейки */}
           </tr>
         ))}

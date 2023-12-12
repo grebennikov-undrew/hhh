@@ -2,7 +2,7 @@ import axios from '../axios'
 import instance from '../axios';
 export const getData = async () => {
   try {
-    const response = await instance.get(`api/users/`);
+    const response = await instance.get(`api/users`);
     return response.data;
   } catch (error) {
     console.error(error);
