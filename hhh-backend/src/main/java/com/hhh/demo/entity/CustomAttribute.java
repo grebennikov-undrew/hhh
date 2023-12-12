@@ -1,5 +1,6 @@
 package com.hhh.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,4 +17,12 @@ public class CustomAttribute {
     private Long attribute_id;
 
     private String attribute_name;
+
+    @Enumerated(EnumType.STRING)
+    private CustomAttributeType type;
+
+    @ManyToOne
+    @JoinColumn(name = "habit_id")
+    @JsonIgnore
+    private HabitCatalog habitCatalog;
 }

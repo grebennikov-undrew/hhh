@@ -68,7 +68,7 @@ const Navigation = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/">Главная</Nav.Link>
-          <Nav.Link as={Link} to="/about">Профиль</Nav.Link>
+          <Nav.Link as={Link} to="/profile/1">Профиль</Nav.Link>
           <Nav.Link as={Link} to="/login">Авторизация</Nav.Link>
         </Nav>
       </Navbar.Collapse>

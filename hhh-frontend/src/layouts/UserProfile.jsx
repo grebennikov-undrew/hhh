@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import instance from '../axios';
-import { Card, Button, Container, Row, Col, Modal, Form } from 'react-bootstrap';
-import HeatMap from '../components/charts/Heatmap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Button, Container, Row, Col, Modal, Form } from 'react-bootstrap';
 import PersonalHabitCard from '../components/PersonalHabitCard';
-import { getData, postData, updateData, deleteData } from '../services/http.service';
+import { getData, updateData } from '../services/http.service';
 
 function UserProfile() {
     const params = useParams();
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
 
@@ -32,7 +31,7 @@ function UserProfile() {
         } catch (error) {
           console.error('Ошибка:', error);
         }
-      };
+    };
 
     const handleUserDataEdit = (value, field) => {
         setUser({...user, [field]: value})
@@ -52,7 +51,7 @@ function UserProfile() {
                     <Col xs={12} md={9} lg={3} className="d-flex flex-column justify-content-center">
                         <h2>{user.username}</h2>
                         <p>{user.email}</p>
-                        <Button variant="primary" onClick={handleShowEditModal}>Редактировать</Button>
+                        <Button variant="primary" onClick={handleShowEditModal}>Редактировать профиль</Button>
                     </Col>
                 </Row>
                 <Row>
@@ -70,9 +69,11 @@ function UserProfile() {
                             </Card> */}
                         </Col>
                     ))}
-                    <Button variant="light">Добавить</Button>
+                    <Button variant="light" style={{marginBottom: "30px"}} onClick={() => navigate(`add`)}>Добавить</Button>
                 </Row>
             </Container>
+
+
             <Modal show={showEditModal} onHide={handleCloseEditModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Редактировать профиль</Modal.Title>
@@ -108,6 +109,7 @@ function UserProfile() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            
         </>
         
         

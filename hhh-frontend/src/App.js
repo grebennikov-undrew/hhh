@@ -6,6 +6,7 @@ import Login from './layouts/login';
 import UserPage from './layouts/habits';
 import Main from './layouts/main';
 import UserProfile from './layouts/UserProfile';
+import AddHabit from './layouts/AddHabit';
 
 import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/about" element={<UserPage/>} />
             <Route path="/profile/:id" element={<UserProfile/>} />
+            <Route path="/profile/:id/add" element={<AddHabit/>} />
             <Route path="/login" element={<Login/>} />
             <Route exact path='/' element={<Main/>}/>
           </Routes>

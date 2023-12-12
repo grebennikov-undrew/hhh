@@ -29,6 +29,13 @@ public class HabitController {
         return ResponseEntity.ok(habits);
     }
 
+    @Operation(summary = "Сохранить/изменить привычку")
+    @PostMapping
+    public ResponseEntity<HabitCatalog> saveHabit(@RequestBody HabitCatalog habitCatalog) {
+        HabitCatalog habit = habitCatalogService.saveAndAdd(habitCatalog);
+        return ResponseEntity.ok(habit);
+    }
+
     @Operation(summary = "Загрузить все привычки как csv")
     @PostMapping(value = "/upload", consumes = {"multipart/form-data"})
     public ResponseEntity<String> uploadCSVFile(@RequestParam("file") MultipartFile file) throws CsvValidationException {

@@ -1,12 +1,15 @@
 package com.hhh.demo.service;
 
+import com.hhh.demo.entity.CustomAttribute;
 import com.hhh.demo.entity.HabitCatalog;
+import com.hhh.demo.repository.CustomAttributeRepository;
 import com.hhh.demo.repository.HabitCatalogRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
@@ -22,9 +25,29 @@ public class HabitCatalogService {
 
     @Autowired
     HabitCatalogRepository habitCatalogRepository;
+    @Autowired
+    CustomAttributeService customAttributeService;
+    @Autowired
+    UserService userService;
 
     public List<HabitCatalog> findAll() {
         return habitCatalogRepository.findAll();
+    }
+
+    @Transactional
+    public HabitCatalog saveAndAdd(HabitCatalog habitCatalog) {
+
+        HabitCatalog newHabitCatalog = habitCatalogRepository.save(habitCatalog);
+
+        habitCatalog.getCustomAttributes().forEach(customAttribute -> {
+            customAttribute.setHabitCatalog(newHabitCatalog);
+            customAttributeService.createCustomAttribute(customAttribute);
+        });
+
+        userService.addHabit(1L,newHabitCatalog);
+
+        HabitCatalog savedHabit = habitCatalogRepository.getReferenceById(newHabitCatalog.getHabit_id());
+        return savedHabit;
     }
 
     public List<HabitCatalog> uploadHabitCatalog(MultipartFile file) throws IOException, CsvValidationException {
