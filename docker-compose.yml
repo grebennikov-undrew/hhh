@@ -29,5 +29,23 @@ services:
       - SERVER_PORT= 8081
       - SPRING_DATASOURCE_URL=jdbc:postgresql://hhh-db:5433/hhh
       
+  hhh-frontend:
+    image: hhh-frontend:0.0.1
+    build: ./hhh-frontend
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+
+  hhh-nginx:
+    image: nginx:1.17
+    ports:
+      - "80:80"
+    depends_on:
+      - hhh-frontend
+      - hhh-backend
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/nginx.conf:ro
 volumes:
   db-data:
